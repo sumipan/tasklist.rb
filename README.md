@@ -54,6 +54,21 @@ tasklist.tasks.each do |task|
 end
 ```
 
+### Filter task
+
+```ruby
+tasklist.filter(:assignee => 'sumipan').tasks.each do |task|
+  # do something
+end
+```
+
+### Merge tasklist
+
+```ruby
+merged_tasklist = tasklist.merge(another_tasklist)
+```
+
+Tasks are sorted in the order in which they are added.
 
 ## Writing rule
 
