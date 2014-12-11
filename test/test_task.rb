@@ -35,5 +35,8 @@ describe Tasklist::Task do
         :is_done        => false,
       })
     }.must_raise ContractError
-    end
+
+    tasklist = Tasklist::Tasklist.new
+    task.set_tasklist(tasklist)
+  end
 end
