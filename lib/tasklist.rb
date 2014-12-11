@@ -1,5 +1,11 @@
 require "tasklist/version"
 
 module Tasklist
-  # Your code goes here...
+  def parse(text)
+  end
+
+  module_function :parse
+
+  require 'tasklist/tasklist'
+  require 'tasklist/task'
 end
