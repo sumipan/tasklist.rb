@@ -4,7 +4,7 @@ $LOAD_PATH.push('lib')
 require 'tasklist'
 
 describe Tasklist::Task do
-  it "ok" do
+  it "argument is checked type" do
     task = Tasklist::Task.new({
       :title          => 'task title',
       :assignee       => 'assignee name',
