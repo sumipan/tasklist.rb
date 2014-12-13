@@ -57,7 +57,7 @@ end
 ### Filter task
 
 ```ruby
-tasklist.filter(:assignee => 'sumipan').tasks.each do |task|
+tasklist.select {|task,tasklist| task.assignee == '@sumipan' }.tasks.each do |task|
   # do something
 end
 ```
