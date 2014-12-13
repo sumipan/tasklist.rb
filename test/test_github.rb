@@ -17,7 +17,7 @@ describe Tasklist do
       :oauth_token => ENV['GITHUB_TOKEN'],
     }))
 
-    tasklist = github.issues.get(options.merge({:number => ENV['GITHUB_NUMBER']})).tasklist(github)
+    tasklist = github.issues.get(options.merge({:number => ENV['GITHUB_NUMBER']})).body.tasklist(github)
     tasklist.tasks.each do |task|
       puts task.to_s
     end

@@ -1,15 +1,15 @@
 require 'contracts'
 require 'github_api'
 
-module Github
-  class ResponseWrapper
+module Hashie
+  class Mash
 
     define_method "tasklist" do |client|
       # nothing to do.
-      return nil if !body.number || !body.title
+      return nil if !number || !title
 
       tasklist = Tasklist::Tasklist.new
-      tasklist.attr('issue', body)
+      tasklist.attr('issue', self)
       tasklists(client).each do |new_tasklist|
         tasklist.merge(new_tasklist)
       end
@@ -19,7 +19,7 @@ module Github
 
     define_method "tasklists" do |client|
       # nothing to do.
-      return nil if !body.number || !body.title
+      return nil if !number || !title
 
       tasklists = []
       per_page  = 100
@@ -31,7 +31,7 @@ module Github
         comments = client.issues.comments.list({
           :user   => client.user,
           :repo   => client.repo,
-          :number => body.number,
+          :number => number,
           :per_page => per_page,
           :page   => page
         }).body
