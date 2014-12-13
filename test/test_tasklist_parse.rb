@@ -19,7 +19,6 @@ describe Tasklist do
 
     tasklist.tasks.each do |task|
       task.title.must_match(/テストのタスク/)
-      task.assignee.must_equal "@sumipan"
     end
   end
 end
