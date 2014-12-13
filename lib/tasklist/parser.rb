@@ -50,12 +50,15 @@ module Tasklist
 
         params[:title] = plain_task
 
-        tasklist.add(Task.new({
+        task = Task.new({
           :title          => params[:title],
           :assignee       => params[:assignee],
           :remaining_time => params[:remaining_time],
           :is_done        => params[:is_done],
-        }))
+        })
+        
+        task.set_tasklist(tasklist)
+        tasklist.add(task)
       end
 
       tasklist
