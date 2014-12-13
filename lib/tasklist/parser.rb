@@ -32,7 +32,7 @@ module Tasklist
         end
 
         plain_task = input.match(/^- \[[ x]\] (.+)$/)[1]
-        match = plain_task.match(/ ([0-9\.]+)+h$/)
+        match = plain_task.strip.match(/ ([0-9\.]+)+h$/)
         if match then
           if match[1].include?('.') then
             params[:remaining_time] = match[1].to_f
@@ -42,7 +42,7 @@ module Tasklist
           plain_task = plain_task.sub(match[0], '').strip
         end
 
-        match = plain_task.match(/ (@[a-zA-Z0-9_]+)$/)
+        match = plain_task.strip.match(/ (@[a-zA-Z0-9_]+)$/)
         if match then
           params[:assignee] = match[1]
           plain_task = plain_task.sub(match[0], '').strip
@@ -56,7 +56,7 @@ module Tasklist
           :remaining_time => params[:remaining_time],
           :is_done        => params[:is_done],
         })
-        
+
         task.set_tasklist(tasklist)
         tasklist.add(task)
       end
