@@ -9,7 +9,6 @@ module Hashie
       return nil if !number || !title
 
       tasklist = Tasklist::Tasklist.new
-      tasklist.attr('issue', self)
       tasklists(client).each do |new_tasklist|
         tasklist.merge(new_tasklist)
       end
@@ -38,6 +37,7 @@ module Hashie
 
         comments.each do |comment|
           tasklist = Tasklist.parse(comment.body)
+          tasklist.attr('issue', self)
           if tasklist then
             tasklist.tasks.each do |task|
               task.set_title("##{number} " + task.title)
