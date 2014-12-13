@@ -25,4 +25,23 @@ describe Tasklist do
     tasklist = Tasklist.parse(text)
     tasklist.must_equal nil
   end
+
+  it "only select task" do
+    text = File.read(File.expand_path('tasklist.txt', File.dirname(__FILE__)))
+    tasklist = Tasklist.parse(text)
+
+    tasklist.select {|task,tasklist|
+      !task.is_done?
+    }.tasks.each do |task|
+      puts task.to_s
+      task.is_done?.must_equal false
+    end
+
+    tasklist.select {|task,tasklist|
+      task.assignee == '@sumipan'
+    }.tasks.each do |task|
+      puts task.to_s
+      task.assignee.must_equal '@sumipan'
+    end
+  end
 end

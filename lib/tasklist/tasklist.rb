@@ -32,6 +32,17 @@ module Tasklist
       self
     end
 
+    Contract Proc => Tasklist
+    def select
+      tasklist = Tasklist.new
+
+      tasks.each do |task|
+        tasklist.add(task) if yield task, self
+      end
+
+      tasklist
+    end
+
     Contract String, Or[Object,nil] => Or[Object,nil]
     def attr(key, value=nil)
       if value then
