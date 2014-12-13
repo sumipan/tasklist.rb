@@ -21,7 +21,16 @@ module Tasklist
       nil
     end
 
-    Contract String, Or[String,nil] => Or[String,nil]
+    Contract Tasklist => Tasklist
+    def merge(tasklist)
+      tasklist.tasks.each do |task|
+        add(task)
+      end
+
+      self
+    end
+
+    Contract String, Or[Object,nil] => Or[Object,nil]
     def attr(key, value=nil)
       if value then
         @attrs[key] = value
