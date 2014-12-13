@@ -5,13 +5,13 @@ require 'contracts'
 module Tasklist
   class Parser
     include Contracts
-    
+
     TASK_START_PHRASE = "タスク"
 
     Contract String, Tasklist => Or[nil,Tasklist]
     def parse(text, tasklist)
       # tasklist must start with "タスク" phrase.
-      return nil unless text.match(/^#{TASK_START_PHRASE}/)
+      return nil unless text.each_line.first.match(/^#{TASK_START_PHRASE}/)
 
       plain_attrs = text.each_line.first.sub(TASK_START_PHRASE,'').chomp.strip
       plain_attrs.split(',').each do |attr|

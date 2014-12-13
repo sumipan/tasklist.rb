@@ -20,5 +20,9 @@ describe Tasklist do
     tasklist.tasks.each do |task|
       task.title.must_match(/テストのタスク/)
     end
+
+    text = File.read(File.expand_path('no_tasklist.txt', File.dirname(__FILE__)))
+    tasklist = Tasklist.parse(text)
+    tasklist.must_equal nil
   end
 end
