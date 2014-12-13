@@ -21,10 +21,12 @@ module Tasklist
       nil
     end
 
-    Contract Tasklist => Tasklist
+    Contract Or[Tasklist,nil] => Tasklist
     def merge(tasklist)
-      tasklist.tasks.each do |task|
-        add(task)
+      if tasklist then
+        tasklist.tasks.each do |task|
+          add(task)
+        end
       end
 
       self
