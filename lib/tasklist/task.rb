@@ -30,6 +30,12 @@ module Tasklist
     end
 
     Contract String => nil
+    def set_title(new_title)
+      @title = new_title
+      nil
+    end
+
+    Contract String => nil
     def set_assignee(assignee)
       @assignee = assignee
       nil
