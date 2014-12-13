@@ -37,7 +37,7 @@ module Tasklist
 
     Contract String => String
     def to_s
-      sprintf(" - [%s] %s %s %sh", (is_done?) ? 'x' : ' ', title, assignee, remaining_time)
+      sprintf("- [%s] %s %s %s", (is_done?) ? 'x' : ' ', title, assignee, (remaining_time) ? remaining_time.to_s + 'h' : '').strip
     end
   end
 end
