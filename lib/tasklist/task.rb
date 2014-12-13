@@ -28,5 +28,16 @@ module Tasklist
       @tasklist = tasklist
       nil
     end
+
+    Contract String => nil
+    def set_assignee(assignee)
+      @assignee = assignee
+      nil
+    end
+
+    Contract String => String
+    def to_s
+      sprintf(" - [%s] %s %s %sh", (is_done?) ? 'x' : ' ', title, assignee, remaining_time)
+    end
   end
 end
