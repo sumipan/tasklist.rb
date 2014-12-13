@@ -55,5 +55,15 @@ module Tasklist
         return nil
       end
     end
+
+    Contract String => String
+    def to_s
+      str = Parser::TASK_START_PHRASE + "\n\n"
+      tasks.each do |task|
+        str += task.to_s + "\n"
+      end
+
+      str
+    end
   end
 end
