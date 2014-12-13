@@ -2,12 +2,22 @@
 
 module Tasklist
   class Parser
+
+    TASK_START_PHRASE = "タスク"
+
     def parse(text, tasklist)
       # tasklist must start with "タスク" phrase.
-      return nil unless text.match(/^タスク/)
+      return nil unless text.match(/^#{TASK_START_PHRASE}/)
+
+      plain_attrs = text.each_line.first.sub(TASK_START_PHRASE,'').chomp.strip
+      plain_attrs.split(',').each do |attr|
+        key, value = attr.split('=>').map{|e| e.strip }
+        tasklist.attr(key, value)
+      end
 
       text.each_line do |line|
         input = line.chomp.strip
+
         next unless input.match(/^- \[[ x]\] /)
 
         params = {}

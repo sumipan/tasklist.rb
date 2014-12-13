@@ -13,6 +13,10 @@ describe Tasklist do
     tasklist = Tasklist.parse(text)
     tasklist.must_be_instance_of Tasklist::Tasklist
 
+    tasklist.attr("属性名").must_equal "テスト"
+    tasklist.attr("属性名2").must_equal "テスト"
+    tasklist.attr("属性名3").must_equal nil
+
     tasklist.tasks.each do |task|
       task.title.must_match(/テストのタスク/)
       task.assignee.must_equal "@sumipan"
