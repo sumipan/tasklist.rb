@@ -2,6 +2,7 @@ require 'minitest/autorun'
 $LOAD_PATH.push('lib')
 
 require 'tasklist'
+require 'pp'
 
 describe Tasklist do
   it "parse tasklist" do
@@ -24,6 +25,12 @@ describe Tasklist do
     text = File.read(File.expand_path('no_tasklist.txt', File.dirname(__FILE__)))
     tasklist = Tasklist.parse(text)
     tasklist.must_equal nil
+  end
+
+  it "github user name" do
+    text = File.read(File.expand_path('bugfix_tasklist.txt', File.dirname(__FILE__)))
+    tasklist = Tasklist.parse(text)
+    tasklist.tasks.first.assignee.must_equal '@takashi-nagayasu'
   end
 
   it "only select task" do

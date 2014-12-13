@@ -42,7 +42,7 @@ module Tasklist
           plain_task = plain_task.sub(match[0], '').strip
         end
 
-        match = plain_task.strip.match(/ (@[a-zA-Z0-9_]+)$/)
+        match = plain_task.strip.match(/ (@[a-zA-Z0-9_\-]+)$/)
         if match then
           params[:assignee] = match[1]
           plain_task = plain_task.sub(match[0], '').strip
