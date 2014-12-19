@@ -3,6 +3,7 @@ $LOAD_PATH.push('lib')
 
 require 'tasklist'
 require 'tasklist/github'
+require 'hashie'
 require 'pp'
 
 describe Tasklist do
@@ -19,7 +20,8 @@ describe Tasklist do
 
     tasklist = github.issues.get(options.merge({:number => ENV['GITHUB_NUMBER']})).body.tasklist(github)
     tasklist.tasks.each do |task|
-      puts task.to_s
+      task.tasklist.attr('issue').must_be_instance_of Hashie::Mash
+      task.tasklist.attr('issue').number.to_s.must_equal ENV['GITHUB_NUMBER']
     end
   end
 end
