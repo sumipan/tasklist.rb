@@ -1,0 +1,3 @@
+タスク priority => 1
+
+- [ ] priority 1 のタスク @sumipan 2h
