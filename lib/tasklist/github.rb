@@ -39,6 +39,7 @@ module Hashie
           tasklist = Tasklist.parse(comment.body)
           if tasklist then
             tasklist.attr('issue', self)
+            tasklist.attr('comment', comment)
             tasklist.tasks.each do |task|
               task.set_title("##{number} " + task.title)
               task.set_assignee("@#{comment.user.login}") unless task.assignee

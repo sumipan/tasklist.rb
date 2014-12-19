@@ -20,6 +20,7 @@ describe Tasklist do
 
     tasklist = github.issues.get(options.merge({:number => ENV['GITHUB_NUMBER']})).body.tasklist(github)
     tasklist.tasks.each do |task|
+      task.tasklist.attr('comment').must_be_instance_of Hashie::Mash
       task.tasklist.attr('issue').must_be_instance_of Hashie::Mash
       task.tasklist.attr('issue').number.to_s.must_equal ENV['GITHUB_NUMBER']
     end
