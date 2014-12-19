@@ -26,8 +26,8 @@ require 'tasklist/github'
 github = Github::Client.new
 github.setup(options)
 
-github.issues.get(:number => number).tasklists.each do |tasklist|
-  tasklist.attribute('attribute name')
+github.issues.get(:number => number).body.tasklists.each do |tasklist|
+  tasklist.attr('attribute name')
 
   tasklist.tasks.each do |task|
     task.is_done?
@@ -44,7 +44,7 @@ Or
 require 'tasklist'
 
 tasklist = Tasklist.parse(text)
-tasklist.attribute('attribute name')
+tasklist.attr('attribute name')
 
 tasklist.tasks.each do |task|
   task.is_done?
@@ -54,18 +54,30 @@ tasklist.tasks.each do |task|
 end
 ```
 
-### Filter task
+### Filter
 
 ```ruby
-tasklist.select {|task,tasklist| task.assignee == '@sumipan' }.tasks.each do |task|
+tasklist.tasks.select{|t|
+  !t.is_done?
+}.each do|task|
   # do something
 end
 ```
 
-### Merge tasklist
+### Sort
 
 ```ruby
-merged_tasklist = tasklist.merge(another_tasklist)
+tasklist.tasks.sort{|a,b|
+  a.tasklist.attr('priority').to_i <=> b.tasklist.attr('priority').to_i
+}.each do |task|
+  # do something
+end
+```
+
+### Merge
+
+```ruby
+tasklist.merge(tasklist2)
 ```
 
 Tasks are sorted in the order in which they are added.
