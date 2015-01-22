@@ -22,16 +22,16 @@ module Tasklist
       text.each_line do |line|
         input = line.chomp.strip
 
-        next unless input.match(/^- \[[ x]\] /)
+        next unless input.match(/^[-*] \[[ x]\] /)
 
         params = {}
-        if input.match(/^- \[x\] /) then
+        if input.match(/^[-*] \[x\] /) then
           params[:is_done] = true
         else
           params[:is_done] = false
         end
 
-        plain_task = input.match(/^- \[[ x]\] (.+)$/)[1]
+        plain_task = input.match(/^[-*] \[[ x]\] (.+)$/)[1]
         match = plain_task.strip.match(/ ([0-9\.]+)+h$/)
         if match then
           if match[1].include?('.') then
