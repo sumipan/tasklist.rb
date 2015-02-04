@@ -43,7 +43,7 @@ module Hashie
             i = 1
             tasklist.tasks.each do |task|
               task.set_id("#{comment.id}.#{i}")
-              task.set_title("##{number} " + task.title)
+              task.set_title(task.title)
               task.set_assignee("@#{comment.user.login}") unless task.assignee
 
               i += 1

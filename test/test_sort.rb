@@ -7,7 +7,9 @@ require 'pp'
 describe Tasklist do
   it "sort tasklist" do
     text1 = File.read(File.expand_path('tasklist_sort1.txt', File.dirname(__FILE__)))
+    text1 = text1.force_encoding('UTF-8')
     text2 = File.read(File.expand_path('tasklist_sort2.txt', File.dirname(__FILE__)))
+    text2 = text2.force_encoding('UTF-8')
 
     tasklist = Tasklist.parse(text1)
     tasklist = tasklist.merge(Tasklist.parse(text2))

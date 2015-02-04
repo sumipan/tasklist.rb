@@ -1,3 +1,5 @@
+gem 'minitest'
+
 require 'minitest/autorun'
 $LOAD_PATH.push('lib')
 
@@ -25,7 +27,7 @@ describe Tasklist::Task do
         :assignee       => 'assignee name',
         :remaining_time => 2,
       })
-    }.must_raise ContractError
+    }.must_raise NameError
 
     proc {
       Tasklist::Task.new({
@@ -34,7 +36,7 @@ describe Tasklist::Task do
         :remaining_time => "2",
         :is_done        => false,
       })
-    }.must_raise ContractError
+    }.must_raise NameError
 
     tasklist = Tasklist::Tasklist.new
     task.set_tasklist(tasklist)
