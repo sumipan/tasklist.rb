@@ -5,7 +5,7 @@ module Tasklist
   class Task
     include Contracts
 
-    attr_reader :title,  :assignee, :remaining_time, :is_done, :tasklist
+    attr_reader :title,  :assignee, :remaining_time, :is_done, :tasklist, :id
 
     Contract ({ :title => String, :assignee => Or[String,nil], :remaining_time => Or[Fixnum,Float,nil], :is_done => Bool }) => nil
     def initialize(params)
@@ -38,6 +38,12 @@ module Tasklist
     Contract String => nil
     def set_assignee(assignee)
       @assignee = assignee
+      nil
+    end
+
+    Contract String => nil
+    def set_id(id)
+      @id = id
       nil
     end
 

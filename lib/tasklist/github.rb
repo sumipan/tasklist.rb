@@ -40,9 +40,13 @@ module Hashie
           if tasklist then
             tasklist.attr('issue', self)
             tasklist.attr('comment', comment)
+            i = 1
             tasklist.tasks.each do |task|
+              task.set_id("#{comment.id}.#{i}")
               task.set_title("##{number} " + task.title)
               task.set_assignee("@#{comment.user.login}") unless task.assignee
+
+              i += 1
             end
 
             tasklists.push(tasklist)
