@@ -1,5 +1,3 @@
-gem 'minitest'
-
 require 'minitest/autorun'
 $LOAD_PATH.push('lib')
 
@@ -40,7 +38,7 @@ describe Tasklist::Tasklist do
   it "checked arguments" do
     proc {
       tasklist = Tasklist::Tasklist.new("invalid argument")
-    }.must_raise NameError
+    }.must_raise ArgumentError
   end
 
   it "additional tasks are pushed to the array" do

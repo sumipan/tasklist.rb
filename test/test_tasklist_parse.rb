@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-gem 'minitest'
-
 require 'minitest/autorun'
 $LOAD_PATH.push('lib')
 
