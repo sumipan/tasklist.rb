@@ -7,7 +7,6 @@ module Tasklist
 
     attr_reader :tasks, :attrs
 
-    Contract () => nil
     def initialize
       @tasks = []
       @attrs = {}

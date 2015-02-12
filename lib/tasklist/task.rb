@@ -7,7 +7,6 @@ module Tasklist
 
     attr_reader :title,  :assignee, :remaining_time, :is_done, :tasklist, :id
 
-    Contract ({ :title => String, :assignee => Or[String,nil], :remaining_time => Or[Fixnum,Float,nil], :is_done => Bool }) => nil
     def initialize(params)
       [:title, :assignee, :remaining_time, :is_done].each do |key|
         if params.include?(key) then
