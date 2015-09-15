@@ -21,7 +21,7 @@ module Hashie
       return nil if !number || !title
 
       tasklists = []
-      per_page  = 100
+      per_page  = 10
       page      = 0
 
       while true
